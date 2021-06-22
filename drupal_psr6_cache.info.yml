@@ -1,0 +1,5 @@
+name: 'PSR-6 Cache'
+type: module
+description: 'PSR-6: Caching Interface for Drupal 8+'
+package: 'Custom'
+core_version_requirement: ^8 | ^9
