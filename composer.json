@@ -1,0 +1,14 @@
+{
+    "name": "itk-dev/drupal_psr6_cache",
+    "type": "drupal-module",
+    "description": "PSR-6: Caching Interface for Drupal 8+",
+    "keywords": [
+    ],
+    "homepage": "https://github.com/itk-dev/drupal_psr6_cache",
+    "authors": [
+        {
+            "name": "Mikkel Ricky",
+            "email": "rimi@aarhus.dk"
+        }
+    ]
+}
