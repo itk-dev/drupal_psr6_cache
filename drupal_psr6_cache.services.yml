@@ -1,0 +1,6 @@
+services:
+  drupal_psr6_cache.cache_item_pool:
+    class: Drupal\drupal_psr6_cache\Cache\CacheItemPool
+    arguments:
+      - '@cache.default'
+      - '@cache_tags.invalidator'
