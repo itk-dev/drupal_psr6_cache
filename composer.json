@@ -13,7 +13,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "psr/cache": "^1.0"
+        "psr/cache": "^3.0"
     },
     "require-dev": {
         "drupal/coder": "^8.3",
