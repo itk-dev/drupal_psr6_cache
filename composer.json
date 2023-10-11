@@ -38,5 +38,11 @@
         "coding-standards-apply": [
             "@coding-standards-apply/phpcs"
         ]
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }
