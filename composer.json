@@ -17,7 +17,8 @@
     },
     "require-dev": {
         "drupal/coder": "^8.3",
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1"
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
+        "mglaman/drupal-check": "^1.4"
     },
     "scripts": {
         "code-analysis/drupal-check": [
