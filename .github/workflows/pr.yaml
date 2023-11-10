@@ -102,7 +102,7 @@ jobs:
           composer code-analysis
 
   markdown-coding-standards:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     name: Markdown coding standards
     steps:
       - name: Checkout
