@@ -8,7 +8,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [1.1.0]
 
-- Updated for d-10
+- Updated for Drupal 10
 - Added github pr workflow
 
 ## [1.0.0]
