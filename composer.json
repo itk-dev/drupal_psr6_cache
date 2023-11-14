@@ -13,24 +13,37 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "psr/cache": "^1.0"
+        "psr/cache": "^3.0"
     },
     "require-dev": {
         "drupal/coder": "^8.3",
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1"
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
+        "mglaman/drupal-check": "^1.4"
     },
     "scripts": {
+        "code-analysis/drupal-check": [
+            "vendor/bin/drupal-check --deprecations --analysis --exclude-dir=vendor *.* src"
+        ],
+        "code-analysis": [
+            "@code-analysis/drupal-check"
+        ],
         "coding-standards-check/phpcs": [
-            "phpcs --standard=phpcs.xml.dist"
+            "vendor/bin/phpcs --standard=phpcs.xml.dist"
         ],
         "coding-standards-check": [
             "@coding-standards-check/phpcs"
         ],
         "coding-standards-apply/phpcs": [
-            "phpcbf --standard=phpcs.xml.dist"
+            "vendor/bin/phpcbf --standard=phpcs.xml.dist"
         ],
         "coding-standards-apply": [
             "@coding-standards-apply/phpcs"
         ]
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }
