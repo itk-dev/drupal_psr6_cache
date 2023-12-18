@@ -34,7 +34,8 @@ class CacheItem implements CacheItemInterface {
    *
    * @var float|null
    */
-  private ?float $expiry; /** @phpstan-ignore-line */
+  /** @phpstan-ignore-next-line */
+  private ?float $expiry;
 
   /**
    * CacheItem constructor.
