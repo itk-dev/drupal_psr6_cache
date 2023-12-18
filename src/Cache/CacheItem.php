@@ -76,7 +76,7 @@ class CacheItem implements CacheItemInterface {
   /**
    * {@inheritdoc}
    */
-  public function set($value): self {
+  public function set($value): static {
     $this->value = $value;
 
     return $this;
@@ -85,7 +85,7 @@ class CacheItem implements CacheItemInterface {
   /**
    * {@inheritdoc}
    */
-  public function expiresAt($expiration): self {
+  public function expiresAt($expiration): static {
     if ($expiration === NULL) {
       $this->expiry = NULL;
     }
@@ -105,7 +105,7 @@ class CacheItem implements CacheItemInterface {
   /**
    * {@inheritdoc}
    */
-  public function expiresAfter($time): self {
+  public function expiresAfter($time): static {
     if ($time === NULL) {
       $this->expiry = NULL;
     }
