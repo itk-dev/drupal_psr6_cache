@@ -34,7 +34,7 @@ class CacheItem implements CacheItemInterface {
    *
    * @var float|null
    */
-  private ?float $expiry;
+  public ?float $expiry;
 
   /**
    * CacheItem constructor.
