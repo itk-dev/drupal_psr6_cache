@@ -11,14 +11,17 @@ use Drupal\Core\Routing\RouteMatchInterface;
  * Implements hook_help().
  */
 function drupal_psr6_cache_help(string $route_name, RouteMatchInterface $route_match): string {
+  $output = '';
+
   switch ($route_name) {
     // Main module help for the drupal_psr6_cache module.
     case 'help.page.drupal_psr6_cache':
-      $output = '';
+
       $output .= '<h3>' . t('About') . '</h3>';
       $output .= '<p>' . t('PSR-6: Caching Interface for Drupal 8+') . '</p>';
-      return $output;
 
     default:
   }
+
+  return $output;
 }

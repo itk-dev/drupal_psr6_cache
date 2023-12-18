@@ -106,7 +106,7 @@ class CacheItem implements CacheItemInterface {
     elseif ($time instanceof \DateInterval) {
       $this->expiry = microtime(TRUE) + (float) \DateTime::createFromFormat('U', '0')->add($time)->format('U.u');
     }
-    elseif {
+    else {
       $this->expiry = $time + microtime(TRUE);
     }
 
