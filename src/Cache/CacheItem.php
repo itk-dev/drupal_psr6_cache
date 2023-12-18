@@ -34,7 +34,7 @@ class CacheItem implements CacheItemInterface {
    *
    * @var float|null
    */
-  private $expiry;
+  private ?float $expiry;
 
   /**
    * CacheItem constructor.
@@ -89,14 +89,8 @@ class CacheItem implements CacheItemInterface {
     if ($expiration === NULL) {
       $this->expiry = NULL;
     }
-    elseif ($expiration instanceof \DateTimeInterface) {
-      $this->expiry = (float) $expiration->format('U.u');
-    }
     else {
-      throw new \RuntimeException(sprintf(
-        'Expected $expiration to be an instance of DateTimeInterface or null, got %s',
-        is_object($expiration) ? get_class($expiration) : gettype($expiration)
-      ));
+      $this->expiry = (float) $expiration->format('U.u');
     }
 
     return $this;
@@ -110,16 +104,10 @@ class CacheItem implements CacheItemInterface {
       $this->expiry = NULL;
     }
     elseif ($time instanceof \DateInterval) {
-      $this->expiry = microtime(TRUE) + (float) \DateTime::createFromFormat('U', 0)->add($time)->format('U.u');
+      $this->expiry = microtime(TRUE) + (float) \DateTime::createFromFormat('U', '0')->add($time)->format('U.u');
     }
-    elseif (is_int($time)) {
+    elseif {
       $this->expiry = $time + microtime(TRUE);
-    }
-    else {
-      throw new \RuntimeException(sprintf(
-        'Expected $time to be either an integer, an instance of DateInterval or null, got %s',
-        is_object($time) ? get_class($time) : gettype($time)
-      ));
     }
 
     return $this;
