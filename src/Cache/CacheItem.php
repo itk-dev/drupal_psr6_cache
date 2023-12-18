@@ -13,21 +13,21 @@ class CacheItem implements CacheItemInterface {
    *
    * @var string
    */
-  private $key;
+  private string $key;
 
   /**
    * The value.
    *
    * @var mixed
    */
-  private $value;
+  private mixed $value;
 
   /**
    * The is hit.
    *
    * @var bool
    */
-  private $isHit;
+  private bool $isHit;
 
   /**
    * The expiry.
@@ -46,7 +46,7 @@ class CacheItem implements CacheItemInterface {
    * @param bool $isHit
    *   The is hit.
    */
-  public function __construct(string $key, $data, bool $isHit) {
+  public function __construct(string $key, mixed $data, bool $isHit) {
     $this->key   = $key;
     $this->value = $data;
     $this->isHit = $isHit;
@@ -62,7 +62,7 @@ class CacheItem implements CacheItemInterface {
   /**
    * {@inheritdoc}
    */
-  public function get() {
+  public function get(): mixed {
     return $this->value;
   }
 
@@ -89,7 +89,7 @@ class CacheItem implements CacheItemInterface {
     if ($expiration === NULL) {
       $this->expiry = NULL;
     }
-    elseif ($expiration instanceof DateTimeInterface) {
+    elseif ($expiration instanceof \DateTimeInterface) {
       $this->expiry = (float) $expiration->format('U.u');
     }
     else {
@@ -109,8 +109,8 @@ class CacheItem implements CacheItemInterface {
     if ($time === NULL) {
       $this->expiry = NULL;
     }
-    elseif ($time instanceof DateInterval) {
-      $this->expiry = microtime(TRUE) + DateTime::createFromFormat('U', 0)->add($time)->format('U.u');
+    elseif ($time instanceof \DateInterval) {
+      $this->expiry = microtime(TRUE) + (float) \DateTime::createFromFormat('U', 0)->add($time)->format('U.u');
     }
     elseif (is_int($time)) {
       $this->expiry = $time + microtime(TRUE);
