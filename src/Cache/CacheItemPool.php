@@ -56,6 +56,8 @@ class CacheItemPool implements CacheItemPoolInterface {
 
   /**
    * {@inheritdoc}
+   *
+   * @return array<int, CacheItemInterface>
    */
   public function getItems(array $keys = []): array {
     return array_map([$this, 'getItem'], $keys);
