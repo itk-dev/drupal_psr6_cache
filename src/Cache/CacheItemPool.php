@@ -57,7 +57,7 @@ class CacheItemPool implements CacheItemPoolInterface {
   /**
    * {@inheritdoc}
    */
-  public function getItems(array $keys = []): iterable {
+  public function getItems(array $keys = []): array {
     return array_map([$this, 'getItem'], $keys);
   }
 
@@ -72,7 +72,7 @@ class CacheItemPool implements CacheItemPoolInterface {
    * {@inheritdoc}
    */
   public function clear(): bool {
-    $this->cacheTagsInvalidator->invalidateTags(static::TAGS);
+    $this->cacheTagsInvalidator->invalidateTags(self::TAGS);
 
     return TRUE;
   }
@@ -103,7 +103,7 @@ class CacheItemPool implements CacheItemPoolInterface {
       $this->getCid($item->getKey()),
       $item->get(),
       Cache::PERMANENT,
-      static::TAGS
+      self::TAGS
     );
 
     return TRUE;
@@ -133,7 +133,7 @@ class CacheItemPool implements CacheItemPoolInterface {
   /**
    * Get cache id.
    */
-  private function getCid(string $key) {
+  private function getCid(string $key): string {
     return 'drupal_psr6_cache:' . $key;
   }
 
