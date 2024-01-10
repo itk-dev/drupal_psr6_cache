@@ -13,28 +13,28 @@ class CacheItem implements CacheItemInterface {
    *
    * @var string
    */
-  private $key;
+  private string $key;
 
   /**
    * The value.
    *
    * @var mixed
    */
-  private $value;
+  private mixed $value;
 
   /**
    * The is hit.
    *
    * @var bool
    */
-  private $isHit;
+  private bool $isHit;
 
   /**
    * The expiry.
    *
    * @var float|null
    */
-  private $expiry;
+  private ?float $expiry;
 
   /**
    * CacheItem constructor.
@@ -46,7 +46,7 @@ class CacheItem implements CacheItemInterface {
    * @param bool $isHit
    *   The is hit.
    */
-  public function __construct(string $key, $data, bool $isHit) {
+  public function __construct(string $key, mixed $data, bool $isHit) {
     $this->key   = $key;
     $this->value = $data;
     $this->isHit = $isHit;
@@ -62,7 +62,7 @@ class CacheItem implements CacheItemInterface {
   /**
    * {@inheritdoc}
    */
-  public function get() {
+  public function get(): mixed {
     return $this->value;
   }
 
@@ -76,7 +76,7 @@ class CacheItem implements CacheItemInterface {
   /**
    * {@inheritdoc}
    */
-  public function set($value): self {
+  public function set($value): static {
     $this->value = $value;
 
     return $this;
@@ -85,18 +85,12 @@ class CacheItem implements CacheItemInterface {
   /**
    * {@inheritdoc}
    */
-  public function expiresAt($expiration): self {
+  public function expiresAt(DateTimeInterface|null $expiration): static {
     if ($expiration === NULL) {
       $this->expiry = NULL;
     }
-    elseif ($expiration instanceof DateTimeInterface) {
-      $this->expiry = (float) $expiration->format('U.u');
-    }
     else {
-      throw new \RuntimeException(sprintf(
-        'Expected $expiration to be an instance of DateTimeInterface or null, got %s',
-        is_object($expiration) ? get_class($expiration) : gettype($expiration)
-      ));
+      $this->expiry = (float) $expiration->format('U.u');
     }
 
     return $this;
@@ -105,21 +99,15 @@ class CacheItem implements CacheItemInterface {
   /**
    * {@inheritdoc}
    */
-  public function expiresAfter($time): self {
+  public function expiresAfter(DateInterval|int|null $time): static {
     if ($time === NULL) {
       $this->expiry = NULL;
     }
-    elseif ($time instanceof DateInterval) {
-      $this->expiry = microtime(TRUE) + DateTime::createFromFormat('U', 0)->add($time)->format('U.u');
-    }
-    elseif (is_int($time)) {
-      $this->expiry = $time + microtime(TRUE);
+    elseif ($time instanceof \DateInterval) {
+      $this->expiry = microtime(TRUE) + (float) \DateTime::createFromFormat('U', '0')->add($time)->format('U.u');
     }
     else {
-      throw new \RuntimeException(sprintf(
-        'Expected $time to be either an integer, an instance of DateInterval or null, got %s',
-        is_object($time) ? get_class($time) : gettype($time)
-      ));
+      $this->expiry = $time + microtime(TRUE);
     }
 
     return $this;
