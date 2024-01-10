@@ -85,7 +85,7 @@ class CacheItem implements CacheItemInterface {
   /**
    * {@inheritdoc}
    */
-  public function expiresAt(DateTimeInterface|null $expiration): static {
+  public function expiresAt(\DateTimeInterface|null $expiration): static {
     if ($expiration === NULL) {
       $this->expiry = NULL;
     }
@@ -99,7 +99,7 @@ class CacheItem implements CacheItemInterface {
   /**
    * {@inheritdoc}
    */
-  public function expiresAfter(DateInterval|int|null $time): static {
+  public function expiresAfter(\DateInterval|int|null $time): static {
     if ($time === NULL) {
       $this->expiry = NULL;
     }
