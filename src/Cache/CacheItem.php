@@ -30,6 +30,13 @@ class CacheItem implements CacheItemInterface {
   private bool $isHit;
 
   /**
+   * The expiry.
+   *
+   * @var float|null
+   */
+  private ?float $expiry;
+
+  /**
    * CacheItem constructor.
    *
    * @param string $key
