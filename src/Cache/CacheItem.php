@@ -66,10 +66,12 @@ class CacheItem implements CacheItemInterface {
     return $this->value;
   }
 
+  /**
+   * Get expiry value.
+   */
   public function getExpiry(): ?float {
     return $this->expiry;
   }
-
 
   /**
    * {@inheritdoc}
