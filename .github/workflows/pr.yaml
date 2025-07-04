@@ -56,7 +56,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-versions: [ '8.1', '8.3', '8.4' ]
+        php-versions: [ '8.4' ]
         dependency-version: [ prefer-lowest, prefer-stable ]
     steps:
       - uses: actions/checkout@master
@@ -81,7 +81,7 @@ jobs:
         run: |
           # We need a Drupal project to run drupal-check (cf. https://github.com/mglaman/drupal-check#usage)
           # Install Drupal
-          composer --no-interaction create-project drupal/recommended-project:^10 --stability=dev drupal
+          composer --no-interaction create-project drupal/recommended-project:^11 --stability=dev drupal
           # Copy our module source code into the Drupal module folder.
           mkdir -p drupal/web/modules/contrib/drupal_psr6_cache
           cp -r drupal_psr6_cache.* composer.json src drupal/web/modules/contrib/drupal_psr6_cache
